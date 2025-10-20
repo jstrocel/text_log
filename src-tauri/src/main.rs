@@ -97,6 +97,25 @@ fn choose_directory(state: State<'_, AppState>, app: tauri::AppHandle) -> Result
 }
 
 #[tauri::command]
+fn read_current_file(state: State<AppState>) -> Result<String, String> {
+    // Get current directory from state (same logic as save_entry)
+    let dir = {
+        let settings = state.lock().map_err(|e| e.to_string())?;
+        settings.journal_directory.clone()
+    };
+    
+    // Create filename with date (same logic as save_entry)
+    let filename = Local::now().format("%Y-%m-%d.txt").to_string();
+    let filepath = dir.join(&filename);
+    
+    // Read file contents or return empty string if file doesn't exist
+    match fs::read_to_string(&filepath) {
+        Ok(contents) => Ok(contents),
+        Err(_) => Ok(String::new()) // Return empty string if file doesn't exist
+    }
+}
+
+#[tauri::command]
 fn save_entry(content: String, state: State<AppState>) -> Result<String, String> {
     // Get timestamp
     let timestamp = Local::now().format("%Y-%m-%d %H:%M:%S").to_string();
@@ -132,7 +151,7 @@ fn main() {
     tauri::Builder::default()
         .plugin(tauri_plugin_dialog::init())
         .manage(app_settings)
-        .invoke_handler(tauri::generate_handler![save_entry, get_directory, choose_directory])
+        .invoke_handler(tauri::generate_handler![save_entry, get_directory, choose_directory, read_current_file])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

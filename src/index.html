@@ -42,6 +42,30 @@
       font-family: monospace;
       font-size: 14px;
     }
+    #file-contents {
+      margin-bottom: 15px;
+      padding: 15px;
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 5px;
+      max-height: 300px;
+      overflow-y: auto;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+    #file-contents.empty {
+      color: #6c757d;
+      font-style: italic;
+    }
+    #file-header {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #495057;
+      border-bottom: 1px solid #dee2e6;
+      padding-bottom: 5px;
+    }
     #controls {
       display: flex;
       align-items: center;
@@ -50,6 +74,10 @@
 </head>
 <body>
   <div id="current-directory">Save Location: Loading...</div>
+  <div id="file-contents">
+    <div id="file-header">Today's Journal: Loading...</div>
+    <div id="file-content">Loading file contents...</div>
+  </div>
   <div id="editor-container"></div>
   <div id="controls">
     <button id="send-btn" class="button">Send</button>
