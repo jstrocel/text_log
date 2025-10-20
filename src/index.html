@@ -15,23 +15,46 @@
       background: white;
       margin-bottom: 20px;
     }
-    #send-btn {
+    .button {
       background: #007AFF;
       color: white;
       border: none;
-      padding: 10px 30px;
+      padding: 10px 20px;
       border-radius: 5px;
       cursor: pointer;
       font-size: 16px;
+      margin-right: 10px;
     }
-    #send-btn:hover {
+    .button:hover {
       background: #0051D5;
+    }
+    .button.secondary {
+      background: #6c757d;
+    }
+    .button.secondary:hover {
+      background: #565e64;
+    }
+    #current-directory {
+      margin-bottom: 15px;
+      padding: 10px;
+      background: #e9ecef;
+      border-radius: 5px;
+      font-family: monospace;
+      font-size: 14px;
+    }
+    #controls {
+      display: flex;
+      align-items: center;
     }
   </style>
 </head>
 <body>
+  <div id="current-directory">Save Location: Loading...</div>
   <div id="editor-container"></div>
-  <button id="send-btn">Send</button>
+  <div id="controls">
+    <button id="send-btn" class="button">Send</button>
+    <button id="change-location-btn" class="button secondary">Change Location</button>
+  </div>
 
   <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
   <script type="module" src="/main.js"></script>

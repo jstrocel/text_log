@@ -16,3 +16,13 @@ This project was built by James Strocel(me_at_strocode.com). Email me with any q
 ## Recommended IDE Setup
 
 - [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+
+# How to compile
+
+# Development
+
+npm run tauri dev
+
+# Build for production
+
+npm run tauri build
